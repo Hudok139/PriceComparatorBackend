@@ -4,3 +4,6 @@ uvicorn==0.30.6
 gunicorn==23.0.0
 requests==2.32.3
 beautifulsoup4==4.12.3
+sqlalchemy==2.0.32
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
