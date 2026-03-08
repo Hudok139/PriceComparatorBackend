@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from backend.routes.products import product_router
-from backend.database import engine, Base
+from routes.products import product_router
+from database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)

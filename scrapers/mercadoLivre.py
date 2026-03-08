@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from backend.utils import fetch_marketplace_data
+from utils import fetch_marketplace_data
 
 def scrape_mercadoLivre(product_name):
     try:

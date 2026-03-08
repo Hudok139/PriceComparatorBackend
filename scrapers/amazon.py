@@ -1,4 +1,4 @@
-from backend.utils import fetch_marketplace_data
+from utils import fetch_marketplace_data
 from bs4 import BeautifulSoup
 
 def scrape_amazon(product_name):

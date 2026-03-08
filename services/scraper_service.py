@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from backend.scrapers.amazon import scrape_amazon
-from backend.services.mercado_livre_api import search_mercado_livre
-from backend.models.product import Product, PriceHistory
+from scrapers.amazon import scrape_amazon
+from services.mercado_livre_api import search_mercado_livre
+from models.product import Product, PriceHistory
 import time
 import random
 

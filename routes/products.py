@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Query, Depends
 from typing import List, Optional
 from sqlalchemy.orm import Session
-from backend.database import get_db
-from backend.models.product import Product, PriceHistory
-from backend.schemas.product import ProductCreate
+from database import get_db
+from models.product import Product, PriceHistory
+from schemas.product import ProductCreate
 from sqlalchemy import func
-from backend.services.scraper_service import run_all_scrapers
+from services.scraper_service import run_all_scrapers
 
 product_router = APIRouter()
 
