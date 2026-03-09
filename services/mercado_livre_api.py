@@ -1,6 +1,9 @@
 import requests
+from cachetools import cached, TTLCache
 
 BASE_URL = "https://api.mercadolibre.com/sites/MLB/search"
+cache = TTLCache(maxsize=100, ttl=3600)
+
 
 def extract_brand(item):
     attributes = item.get("attributes", [])
@@ -11,6 +14,8 @@ def extract_brand(item):
     
     return None
 
+#O decorator lru_cache armazena o retorno da função, isso é útil pra que a mesma consulta não seja realizada repetidamente
+@cached(cache)
 def search_mercado_livre(product_query: str):
     try:
         params = {
@@ -19,7 +24,7 @@ def search_mercado_livre(product_query: str):
             "sort": "price_asc",
         }
         headers = {
-            "User-Agent": "Mozilla/5.0",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
             "Accept": "application/json",
             "X-Client-Id": "6069149323200303"
         }
@@ -36,6 +41,10 @@ def search_mercado_livre(product_query: str):
         if response.status_code != 200:
             print(f"Erro na API do Mercado Livre: {response.status_code}")
             print(response.text)
+            return []
+        
+        if response.status_code == 429:
+            print("Aviso: Limite de requisições atingido no ML. Aguardando...")
             return []
 
         data = response.json()
